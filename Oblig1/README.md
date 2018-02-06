@@ -1,7 +1,8 @@
 <p><span style="font-size: 18pt;"><strong>Intro:</strong></span></p>
 <p>Obligatorisk oppgave er en gruppeoppgave som er en del av mappeinnleveringen og teller mot sluttkarakter.</p>
-<p>Oppgavene skal l&oslash;ses og lastes opp p&aring; Github.<br />Oppgavene skal besvares i en .md (markdown) fil.</p>
-
+<p>Oppgavene skal l&oslash;ses og lastes opp p&aring; Github.&nbsp;<br />Oppgavene skal besvares i en .md (markdown) fil, og go filene skal lastes opp i mappestrukturen.</p>
+<p>&nbsp;Filer referert i oppgaven ligger her:&nbsp;<a class="instructure_file_link" title="Oblig1.zip" href="https://uia.instructure.com/courses/694/files/75251/download?wrap=1" data-api-endpoint="https://uia.instructure.com/api/v1/courses/694/files/75251" data-api-returntype="File">Oblig1.zip</a></p>
+<p>&nbsp;</p>
 <h1><strong>1. Fyll ut manglende tall i tabell</strong></h1>
 <table style="width: 687px;" border="1">
 <tbody>
@@ -82,27 +83,29 @@
 <h1><strong>2. Forst&aring; algoritmer og utf&oslash;re &ldquo;benchmark&rdquo;-tester p&aring; koden</strong></h1>
 <p>Programmeringsoppgave: - ta utgangspunkt i pakken algorithms i oblig1</p>
 <h2><span style="font-size: 18pt;"><strong>Oppgave A</strong></span></h2>
-<p>Skriv en modifisert bubble-sort funksjon benchmarkBSortModified basert p&aring; eksempel-funksjon Bubble_sort i filen sorting.go (se for tips)</p>
+<p>Skriv en modifisert bubble-sort funksjon benchmarkBSortModified basert p&aring; eksempel-funksjon BubbleSort i filen sorting.go (se <a href="https://en.wikipedia.org/wiki/Bubble_sort">https://en.wikipedia.org/wiki/Bubble_sort</a> for tips)</p>
 <h2><span style="font-size: 18pt;"><strong>Oppgave&nbsp;B</strong></span></h2>
-<p>Skriv "benchmark"-tester for benchmarkBSortModified funksjonen basert p&aring; eksempel-funksjon benchmarkBSort i filen go</p>
+<p>Skriv "benchmark"-tester for benchmarkBSortModified funksjonen basert p&aring; eksempel-funksjon benchmarkBSort i filen sorting_test.go</p>
 <h2><span style="font-size: 18pt;"><strong>Oppgave C</strong></span></h2>
 <p>Det finnes ogs&aring; en implementasjon av Quicksort algoritme i sorting.go og tilsvarende implementasjon av tester i go; utf&oslash;r alle benchmark- testene med kommando &ldquo;go test -bench=.&rdquo; og presenter resultatene grafisk</p>
 <p>Hva kan du si om big-O for alle 3 algoritmene, som du har testet?</p>
 <p>&nbsp;</p>
 <p><em>Ressurser:</em></p>
+<p><em>Golang test:&nbsp;<a href="https://golang.org/pkg/testing/">https://golang.org/pkg/testing/</a>&nbsp;</em></p>
 <p><em>Bubble sort: <a href="https://en.wikipedia.org/wiki/Bubble_sort">https://en.wikipedia.org/wiki/Bubble_sort</a></em></p>
 <p><em>Big-O <a href="http://bigocheatsheet.com">http://bigocheatsheet.com</a> &nbsp;</em></p>
 <p>&nbsp;</p>
 <h1><strong>3. Forst&aring; prosessadministrajon p&aring; et platform</strong></h1>
 <p>Skriv et program som best&aring;r av en evig l&oslash;kke. Hvor mye minne og CPU bruker programmet n&aring;r det kj&oslash;rer. Programmet skal skrive ut en avslutningsmeld- ing n&aring;r programmet mottar et SIGINT signal. Generer ulike avslutningssig- naler til prosessen og dokumenter hvilke avslutningskommandoer programmet h&aring;ndterer og som trigger avslutningsmeldingen.</p>
 <p>Ressurs: <br /> <span><a href="https://en.wikipedia.org/wiki/Signal_(IPC)">https://en.wikipedia.org/wiki/Signal_(IPC)</a></span></p>
+<p><a href="https://golang.org/pkg/os/signal/#hdr-Windows">https://golang.org/pkg/os/signal/#hdr-Windows</a>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h1><strong>4. Typografiske symboler</strong></h1>
 <p>Form&aring;l:</p>
 <ul>
 <li>Bli kjent med ISO/IEC 8859 serier for 8-bits koding av typografiske sym- boler.</li>
-<li>Illustrere forskjell p&aring; ASCII og utvidet ASCII kode gjennom golang ram- meverk for behandling av tekststrenger (p&aring; engelsk brukes det nesten alltid begrepet &ldquo;strings&rdquo; for tekststrenger).</li>
+<li>Illustrere forskjell p&aring; ASCII og utvidet ASCII kode gjennom golang rammeverk for behandling av tekststrenger (p&aring; engelsk brukes det nesten alltid begrepet &ldquo;strings&rdquo; for tekststrenger).</li>
 </ul>
 <p>Hva trenger du &aring; vite for &aring; klare denne oppgaven:</p>
 <ul>
@@ -205,7 +208,7 @@
 </ul>
 <p>&nbsp;</p>
 <h2><span style="font-size: 18pt;"><strong>Oppgave B</strong></span></h2>
-<p>Lag en funksjonen ExtendedASCIIText () i samme filen iso.go, som skriver ut: " &euro; &divide; &frac34; dollar "</p>
+<p>Lag en funksjonen ExtendedASCIIText () i filen&nbsp;sorting.go , som skriver ut: " &euro; &divide; &frac34; dollar "</p>
 <h3>Kravspesifikasjon</h3>
 <ul>
 <li>Funksjonen skal generere en utskrift fra en sekvens av bytes, dvs. av typen []bytes (det betyr at du m&aring; finne den heksadesimale eller bin&aelig;re representasjonen av alle tegn i strengen, som skal skrives ut (inkludert anf&oslash;rselstegn eller &ldquo;double quotes&rdquo; p&aring; engelsk).</li>
