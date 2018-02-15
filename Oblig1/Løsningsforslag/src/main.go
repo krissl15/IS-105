@@ -8,7 +8,7 @@ func main() {
 	/*
 	Fjern kommentar på oppgave som skal kjøres "//->"
 	*/
-	//->	oppgaver.Oppgave2a()
+		oppgaver.Oppgave2a()
 
 //->	oppgaver.Oppgave2Counts()
 
