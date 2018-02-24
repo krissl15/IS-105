@@ -1,5 +1,4 @@
-#IS-105, Obligatorisk oppgave 2
- 
+# IS-105, Obligatorisk oppgave 2
 
 Generelt for alle oppgaver:
 
@@ -23,7 +22,7 @@ Den kan være behov for å se på runer og slices igjen: https://blog.golang.org
 
  
 
-###Oppgave 1
+### Oppgave 1
 a) Skriv et Golang program med navn fileinfo.go​,
 
 Programmet skal returnere detaljert informasjon om en fil i følgende format:
@@ -58,7 +57,7 @@ Kommandoet for å utføre programmet i terminal skal se slik ut: fileinfo <filna
 Stien til filnavnet kan være enten relativ eller absolutt.
 
 
-###Oppgave 2
+### Oppgave 2
 a) Skriv programmer med navn filecount.go som skal lese en tekst-fil, skrive ut totalt antall linjer og de fem “runes” (bokstaver/tegn), som forekommer mest i filen samt hvor mange ganger de telles i den medfølgende filen text.txt. Som forrige oppgave skal filen bygges til et kjørbart program og kunne utføres i terminal med kommandoen: filecount  <filnavn>
 
 Resultatet skal være i følgende format:
@@ -76,7 +75,7 @@ Rune: X , Counts: X
 Rune: X , Counts: X
 ```
 
-###Oppgave 3
+### Oppgave 3
 a) Skriv et program med navn addup.go bestående av to go funksjoner og kommunisere med hverandre gjennom channels
 
  
