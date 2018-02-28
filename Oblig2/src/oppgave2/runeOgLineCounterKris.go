@@ -44,9 +44,11 @@ func main() {
 	sort.Slice(ss, func(i, j int) bool {
 		return ss[i].Value > ss[j].Value
 	})
-
+	fmt.Println("number of lines", word_freq[10]+1) // Finn element i mappet med key 10 (10 er unicode til newline)
 	for i := 0; i < 5; i++ {
 		fmt.Printf("%v %d %v %d\n", "rune:", ss[i].Key, "antall:", ss[i].Value)
 	}
+
+
 
 }
