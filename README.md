@@ -1,2 +1,6 @@
-# IS-105
-IS-105 @V2018
+<h1>Medlemmer</h1>
+Kristoffer Slettebakken<br>
+Phuong Ha Pham <br> 
+Martin Eileraas<br>
+Elias Brynestad<br>
+Brage Fagstad
