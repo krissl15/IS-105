@@ -22,7 +22,7 @@ func main()  {
 
 	strSlice := string(content) //gjør teksten i filen "numbers" til string
 	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
-	nrOne := numbers[0]							//hadde jeg ikke splittet, men brukt []plassene, ville dette skapt
+	nrOne := numbers[0]							//hadde jeg ikke splittet, men brukt []posisjonene, ville dette skapt
 	nrTwo := numbers[1]							//problem om tallene har flere siffer
 
 	intOne, err := strconv.Atoi(nrOne) //convert tallene til ints
