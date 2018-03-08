@@ -5,4 +5,4 @@ Martin Eileraas<br>
 Elias Brynestad<br>
 Brage Fagstad<br>
 
-<h3>Repoen er kopiert fra Wiklem så bare ignorer "oblig1".
+
