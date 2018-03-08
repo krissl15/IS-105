@@ -7,8 +7,8 @@ funksjonA bruker tall fra stdin som argument, og dytter dem inn i hver sin chann
 Det er og en annen waitgroup i funksjonA (wg2) som venter på at tallet blir printet ut. 
 <br>
 b)<br>
-Slik jeg har tolket oppgaven skal addtofile lese to tall fra cmd og legge disse inn i en tekstfil. sumfromfile skal tallene fra samme tekstfilen, og skrive summen inn i tekstfilen. addtofile skal også printe ut summen etter den har blitt summert.<br>
-<h6>Så dette er recap av løsningen min:</h6>
+Slik jeg har tolket oppgaven skal addtofile lese to tall fra cmd og legge disse inn i en tekstfil. sumfromfile skal tallene fra samme tekstfilen, og skrive summen inn i tekstfilen. addtofile skal også printe ut summen etter den har blitt summert.
+<h5>Så dette er recap av løsningen min:</h5>
 addtofile må kjøres først med to tall som parametre eks. addtofile 2 2. sumfromfile leser tallene, summerer dem, og skriver summen i tekstfilen. Nå må addtofile kjøres UTEN parametre, og vil da printe ut summen som nå står i tekstfilen. <br>
 Altså: om en skriver addtofile med to tall, vil den skrive tallene i fil, om en skriver addtofile UTEN parametre, vil den printe det som står i tekstfilen. 
 
