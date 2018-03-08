@@ -22,7 +22,7 @@ func main() {
 	inputOne := os.Args[1]
 	inputTwo := os.Args[2]
 
-	intOne, err := strconv.Atoi(inputOne)
+	intOne, err := strconv.Atoi(inputOne) //konverterer cmd-argumentene til ints.
 	intTwo, err := strconv.Atoi(inputTwo)
 	if err != nil {
 		log.Fatal(err)
