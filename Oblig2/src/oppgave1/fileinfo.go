@@ -50,7 +50,7 @@ func fileInfo(s string) {
 	if file.Mode()&os.ModeDevice == os.ModeDevice {
 		fmt.Println("Is a device file")
 	} else {
-		fmt.Println("Is a device file")
+		fmt.Println("Is not a device file")
 	}
 
 	if file.Mode()&os.ModeSymlink == os.ModeSymlink {
