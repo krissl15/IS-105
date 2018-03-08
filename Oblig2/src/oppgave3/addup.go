@@ -23,17 +23,17 @@ func main() {
 	wg2.Add(1) //wg2 vil vente i main funksjonen til delta=0
 	go func() {
 
-		inputOne := os.Args[1]
-		inputTwo := os.Args[2]
+		inputOne := os.Args[1] // første tallet som skrives
+		inputTwo := os.Args[2] //andre tallet som skrives
 
-		intOne, err := strconv.Atoi(inputOne)
+		intOne, err := strconv.Atoi(inputOne) //konverter dem til int
 		intTwo, err := strconv.Atoi(inputTwo)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		c1 <- intOne
+		c1 <- intOne // en int i hver channel
 		c2 <- intTwo
 		wg.Add(1) //wg blir done når den har puttet summen i c3 på linke 56
 		go addUp()
@@ -50,8 +50,8 @@ func main() {
 func addUp() {
 	add1 := <-c1
 	add2 := <-c2
-	sum := add1 + add2
-	c3 <- sum
+	sum := add1 + add2 //sumerer tallene
+	c3 <- sum 
 	wg.Done() // wg venter på linje 40, den venter på at sum skal bli puttet i c3.
 }
 
