@@ -11,14 +11,10 @@ func main() {
 	fileInfo(filename)
 }
 
-/**
-*Funksjon som sjekker detaljert informasjon om en fil
-*@param filnavn på fil som skal testes
- */
 func fileInfo(s string) {
 	file, err := os.Lstat(s)
 
-	bytes := float64(file.Size())//gjør filstørrelsen om til float64 for å kunne regne sammen KB MB og GB
+	bytes := float64(file.Size())
 	KB := bytes / 1024
 	MB := KB / 1024
 	GB := MB / 1024
@@ -26,11 +22,9 @@ func fileInfo(s string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("##########################################################")
+
 	fmt.Println("Information about", file.Name())
-	fmt.Println("")
 	fmt.Printf("%v, %f, %v, %f, %v %f %v %.15g %v\n ", "Size :", bytes, "bytes,", KB, "KB,", MB, "MB,", GB, "GB") //fant ingen bedre løsning
-	fmt.Println("")
 
 	//If-else setninger som sjekker informasjon om filen. Hva de forskjellige setningene gjør er selvforklarende.
 	if file.Mode().IsDir() == true {
@@ -59,18 +53,6 @@ func fileInfo(s string) {
 		fmt.Println("Is a device file")
 	}
 
-	if file.Mode()&os.ModeCharDevice == os.ModeCharDevice {
-		fmt.Println("Is a Unix character device")
-	} else {
-		fmt.Println("Is not Unix character device")
-	}
-
-	if file.Mode()&os.ModeSocket == os.ModeSocket {
-		fmt.Println("Is a unix block device")
-	} else {
-		fmt.Println("Is not a unix block device")
-	}
-
 	if file.Mode()&os.ModeSymlink == os.ModeSymlink {
 		fmt.Println("Is a symbolic link")
 	} else {
@@ -78,3 +60,4 @@ func fileInfo(s string) {
 	}
 
 }
+
