@@ -13,15 +13,16 @@ func main() {
 
 func fileInfo(s string) {
 	file, err := os.Lstat(s) //Lstat returnerer shitloads med info om filen
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	bytes := float64(file.Size()) // gjør file.Size til float64 så jeg kan regne ut KB/MB/GB
 	KB := bytes / 1024
 	MB := KB / 1024
 	GB := MB / 1024
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	
 
 	fmt.Println("Information about", file.Name())
 	fmt.Printf("%v, %f, %v, %f, %v %f %v %.15g %v\n ", "Size :", bytes, "bytes,", KB, "KB,", MB, "MB,", GB, "GB") //fant ingen bedre løsning
