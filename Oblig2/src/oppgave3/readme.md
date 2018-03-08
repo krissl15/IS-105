@@ -21,7 +21,19 @@ Hvis len(os.Args) er hverken 1 eller 3 vil det bli printet en del setninger om h
 Dette programmet leser "numbers.txt.lock", gjør innholdet til string (fra []byte), og splitter stringsa. Jeg brukte direkte plassene i slicen til å få tak i tallene først, men uten å splitte ender dette opp med å kun få tak i enkle siffre. Når jeg bruker string.Split blir tallene lagret som de er. <br>
 Har så en if-setning som sjekker om det er to tall i filen, om det er det,, vil den kjøre funksjonen sumBytes og skrive summen inn i "numbers.txt.lock". Om det IKKE er 2 tall i filen, vil det bli printet noe setninger om hva som kan ha gått galt.<br>
 Mer detaljer om koden står i koden. 
-<h2>c) IKKE DONE</h2>
+<h2>c) </h2>
+<h3>Error handling i a)</h3>
+I addup.go er første errorhandling i strconv.Atoi(linje24). Her vil det komme en error-melding dersom en skriver noe annet en tall. Det vil da komme en "invalid syntax" melding. <br>
+Om en skriver noe annet en to tall som argument, vil det komme en "index out of range" melding, da koden prøver å lagre os.Args[1] og os.Args[2], som da ikke finnes. <br>
+I denne filen laget jeg en egen funksjon for error-handlingen, så jeg slipper å skrive if-setningen hver gang jeg skriver noe med en error type.<br>
+sumfromfile.go inneholder de tidligere nevnte error typene, med samme errorhandling som i addtofile.go.
+I addtofile.go har ioutil.ReadFile en errortype. Denne erroren blir trigget om programmet ikke finner filen som blir spesifisert.<br>
+os.Create i addtofile.go har også en errortype. Ifølge librariet vil denne funksjonen oppdage PathErrors. Altså om en prøver å lage en fil på et sted som ikke er muligt. <br>
+
+
+
+
+
 <h2>d)</h2>
 SIGINT håndtering er lagt til i egne funksjoner som kjøres i mainen til alle programmene i a) og b).
 <h2>e) IKKE DONE</h2>
