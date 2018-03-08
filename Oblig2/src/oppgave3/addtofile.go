@@ -1,60 +1,67 @@
 package main
 
 import (
-	"os"
-	"log"
-	"io/ioutil"
 	"fmt"
+	"os"
+	"strconv"
+	"log"
+	"sync"
 	"os/signal"
 	"syscall"
-
 	"time"
 )
 
+var wg = sync.WaitGroup{} //oppretter 2 waitgroups, forklarer dem underveis
+var wg2 = sync.WaitGroup{}
+var c1 = make(chan int, 1) // c1 skal lagre et tall
+var c2 = make(chan int, 1) // c2 lagrer et annet tall
+var c3 = make(chan int, 1) //c3 lagrer summen
+
 func main() {
+	inputOne := os.Args[1]
+	inputTwo := os.Args[2]
 
-	sig() // Kjør goroutine som tar opp SIGINT-signal
-
-
-
-	if len(os.Args) == 3 { //sjekker om det er 3 argument når programmet kjøres ([0]filnavn, [1]tall 1, [2]tall2)
-		time.Sleep(900 * time.Millisecond)
-		nrOne := os.Args[1]      //os.args blir en slice, plass [1] blir første tallet som skrives (etter filnavn)
-		nrTwo := os.Args[2]      // [2] blir tall 2
-		createFile(nrOne, nrTwo) // kjør createfile med tallene skrevet i cmd som parametre
-
-		fmt.Println("created file: 'numbers.txt.lock' with numbers:", nrOne,"and", nrTwo)
-	} else if len(os.Args) == 1 { //om det ikke er skrevet noen tall når programmet kjøres, vil det som står i tekstfilen printes til kommando
-		file, err := ioutil.ReadFile("numbers.txt.lock") //åpner filen for lesing, variabelen "file" blir []byte
-		fileText := string(file)                    //gjør om file (som er []byte) til string
-		check(err)
-		time.Sleep(900 * time.Millisecond)
-		fmt.Printf("%q", fileText)
-	}else{ // Programmet kjører kun om det er 0 tall eller 2 tall som parametre. alt annet er feil.
-		fmt.Println("Oops, you did something wrong, this code is perfect tho!")
-		fmt.Println("If you havent already, write 'addtofile' + number1 + number2 ")
-		fmt.Println("If you have created a file with numbers, then write 'sumfromfile'")
-		fmt.Println("If you have already summarized, make sure you only write 'addtofile' to print sum")
-	}
-
-}
-
-func createFile(one, two string) {
-	f, err := os.Create("numbers.txt.lock") //lag en fil som heter "numbers.txt"
-	check(err)
-	defer f.Close()
-	nums := []byte(one + " " + two) //lag en []byte med parametrene
-	f.Write(nums)                   //skriver parametrene inn i "numbers.txt", bruker mellomrom for string.Split.
-}
-
-func check(err error) { //så jeg slipper den gad damn if-setninga overalt
+	intOne, err := strconv.Atoi(inputOne)
+	intTwo, err := strconv.Atoi(inputTwo)
 	if err != nil {
-		log.Println(err)
-		return
+		log.Fatal(err)
 	}
+
+	sigAdd() //goroutine som tar opp SIGINT-signal.
+	funksjonA(intOne, intTwo) // funksjonB blir kallt i funksjonA, så ja, jeg bruker to funksjoner som oppgaven ber om.
 }
 
-func sig() { // gjør hele goroutinen til egen funksjon. Ryddigere.
+func funksjonA(i1, i2 int ) {
+
+	wg2.Add(1) //wg2 vil vente i funksjonA funksjonen til delta=0
+
+	go func() {
+		c1 <- i1
+		c2 <- i2
+
+		wg.Add(1) //wg blir done når den har puttet summen i c3 på linke 56
+		go funksjonB()
+		wg.Wait() // venter på at summen skal bli puttet i c3.
+
+		sum := <-c3
+		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
+		fmt.Println(sum)
+
+		wg2.Done() //Nå kan programmet avsluttes...
+	}()
+	wg2.Wait() //wg2 venter på at den skal bli done, slik at ikke main-funksjonen avslutter før goroutinen er ferdig.
+
+}
+
+func funksjonB() {
+	add1 := <-c1
+	add2 := <-c2
+	sum := add1 + add2
+	c3 <- sum
+	wg.Done() // wg venter på linje 43, den venter på at sum skal bli puttet i c3.
+}
+
+func sigAdd() { // gjør hele goroutinen til egen funksjon. Ryddigere.
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGINT)
 	go func() {
@@ -62,5 +69,4 @@ func sig() { // gjør hele goroutinen til egen funksjon. Ryddigere.
 		fmt.Printf("Motatt SIGINT signal før fullførelse")
 		os.Exit(1)
 	}()
-
 }
