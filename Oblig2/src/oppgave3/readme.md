@@ -36,7 +36,7 @@ os.Create i addtofile.go har også en errortype. Ifølge librariet vil denne fun
 
 
 <h2>d)</h2>
-SIGINT håndtering er lagt til i egne funksjoner som kjøres i mainen til alle programmene i a) og b).
+SIGINT håndtering er lagt til i egne funksjoner som kjøres i mainen til alle programmene i a) og b).<br>
 <h2>e) IKKE DONE</h2>
 
 
