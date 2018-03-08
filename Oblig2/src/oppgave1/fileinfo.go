@@ -12,9 +12,9 @@ func main() {
 }
 
 func fileInfo(s string) {
-	file, err := os.Lstat(s)
+	file, err := os.Lstat(s) //Lstat returnerer shitloads med info om filen
 
-	bytes := float64(file.Size())
+	bytes := float64(file.Size()) // gjør file.Size til float64 så jeg kan regne ut KB/MB/GB
 	KB := bytes / 1024
 	MB := KB / 1024
 	GB := MB / 1024
