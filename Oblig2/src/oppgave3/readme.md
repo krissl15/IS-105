@@ -20,6 +20,12 @@ Hvis len(os.Args) er hverken 1 eller 3 vil det bli printet en del setninger om h
 Dette programmet leser "numbers.txt.lock", gjør innholdet til string (fra []byte), og splitter stringsa. Jeg brukte direkte plassene i slicen til å få tak i tallene først, men uten å splitte ender dette opp med å kun få tak i enkle siffre. Når jeg bruker string.Split blir tallene lagret som de er. <br>
 Har så en if-setning som sjekker om det er to tall i filen, om det er det,, vil den kjøre funksjonen sumBytes og skrive summen inn i "numbers.txt.lock". Om det IKKE er 2 tall i filen, vil det bli printet noe setninger om hva som kan ha gått galt.<br>
 Mer detaljer om koden står i koden. 
+<h2>c) IKKE DONE</h2>
+<h2>d)</h2>
+SIGINT håndtering er lagt til i egne funksjoner som kjøres i mainen til alle programmene i a) og b).
+<h2>e) IKKE DONE</h2>
+
+
 
 
 
