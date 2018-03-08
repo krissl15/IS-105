@@ -11,6 +11,12 @@ Slik jeg har tolket oppgaven skal addtofile lese to tall fra cmd og legge disse 
 <h5>Så dette er recap av løsningen min:</h5>
 addtofile må kjøres først med to tall som parametre eks. addtofile 2 2. sumfromfile leser tallene, summerer dem, og skriver summen i tekstfilen. Nå må addtofile kjøres UTEN parametre, og vil da printe ut summen som nå står i tekstfilen. <br>
 Altså: om en skriver addtofile med to tall, vil den skrive tallene i fil, om en skriver addtofile UTEN parametre, vil den printe det som står i tekstfilen. 
+<h3>addtofile.go</h3>
+For å sjekke at inputen i cmd er med to tall, eller uten parametre, bruker jeg en if-else med len(os.Args) som condition, dette sjekker lengden på slicen som blir opprettet når en bruker os.Args. <br>
+om len(os.Args)==3 vil en vil med navn "numbers.txt.lock" bli opprettet med tallene som innhold. Om filen allerede finnes vil den bli overridet til å inneholde de nye tallene. <br>
+om len(os.Args)==1, altså en KUN skriver "addtofile" i cmd, vil det som står i filen bli printet ut. (Ja, om det er flere tall vil alt bli printet ut, men poenget er at den vil skrive ut summen om sumfromfile har blit brukt...)<br>
+Hvis len(os.Args) er hverken 1 eller 3 vil det bli printet en del setninger om hva som kan være galt. 
+
 
 
 
