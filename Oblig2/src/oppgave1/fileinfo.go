@@ -25,7 +25,7 @@ func fileInfo(s string) {
 	
 
 	fmt.Println("Information about", file.Name())
-	fmt.Printf("%v, %f, %v, %f, %v %f %v %.15g %v\n ", "Size :", bytes, "bytes,", KB, "KB,", MB, "MB,", GB, "GB") //fant ingen bedre løsning
+	fmt.Printf("%v %f %v %f %v %f %v %.15g %v\n ", "Size :", bytes, "bytes,", KB, "KB,", MB, "MB,", GB, "GB") //fant ingen bedre løsning
 
 	//If-else setninger som sjekker informasjon om filen. Hva de forskjellige setningene gjør er selvforklarende.
 	if file.Mode().IsDir() == true {
