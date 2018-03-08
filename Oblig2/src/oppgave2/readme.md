@@ -7,5 +7,7 @@ Oppretter deretter en struct samme som mappet, og sorterer structet etter values
 En for løkke som printer ut de fem mest brukte runene. 
 <br> output:
 <img src="https://i.imgur.com/PAUFm8H.png" alt="opg2Output">
+<br>
+ja, unicode 32 er space: <img src="https://i.imgur.com/afaPBYD.png" alt="asciiTable">
 
 
