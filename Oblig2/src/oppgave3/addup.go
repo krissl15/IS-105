@@ -18,11 +18,6 @@ var c2 = make(chan int, 1) // c2 lagrer et annet tall
 var c3 = make(chan int, 1) //c3 lagrer summen
 
 func main() {
-	sigAdd() //goroutine som tar opp SIGINT-signal.
-	funksjonA()
-}
-
-func funksjonA() {
 	inputOne := os.Args[1]
 	inputTwo := os.Args[2]
 
@@ -31,22 +26,30 @@ func funksjonA() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
+	sigAdd() //goroutine som tar opp SIGINT-signal.
+	funksjonA(intOne, intTwo) // funksjonB blir kallt i funksjonA, så ja, jeg bruker to funksjoner som oppgaven ber om.
+}
+
+func funksjonA(i1, i2 int ) {
+
 	wg2.Add(1) //wg2 vil vente i funksjonA funksjonen til delta=0
 
 	go func() {
-		c1 <- intOne
-		c2 <- intTwo
+		c1 <- i1
+		c2 <- i2
+
 		wg.Add(1) //wg blir done når den har puttet summen i c3 på linke 56
 		go funksjonB()
 		wg.Wait() // venter på at summen skal bli puttet i c3.
+
 		sum := <-c3
 		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
 		fmt.Println(sum)
+
 		wg2.Done() //Nå kan programmet avsluttes...
 	}()
 	wg2.Wait() //wg2 venter på at den skal bli done, slik at ikke main-funksjonen avslutter før goroutinen er ferdig.
-
 
 }
 
