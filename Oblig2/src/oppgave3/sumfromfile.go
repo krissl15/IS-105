@@ -15,17 +15,16 @@ import (
 func main() {
 	sigz() //goroutine som tar opp SIGINT.
 
-	content, err := ioutil.ReadFile("numbers.txt.lock")                                      // åpner for å bruke ioutil
-	//file, err := os.OpenFile("numbers.txt.lock", os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0666, ) //åpner for å bruke os.Write.
-	checke(err)                                                                         // check blir erklært i addtofile
+	file, err := ioutil.ReadFile("numbers.txt.lock")
+	checke(err)
 
-	strSlice := string(content)             //gjør teksten i filen "numbers" til string
+	strSlice := string(file)             //gjør teksten i filen "numbers" til string
 	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
 
 	if len(numbers) == 2 {
 
 		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
-		sum := sumBytes(content)
+		sum := sumBytes(file)
 		ioutil.WriteFile("numbers.txt.lock", sum, 0777)
 		fmt.Printf("%v %s", "'numbers.txt.lock' now updated to ", sum)
 
