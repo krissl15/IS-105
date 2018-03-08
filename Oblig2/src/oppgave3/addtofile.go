@@ -40,11 +40,11 @@ func main() {
 }
 
 func createFile(one, two string) {
-	f, err := os.Create("numbers.txt.lock") //lag en fil som heter "numbers.txt"
+	f, err := os.Create("numbers.txt.lock") //lag en fil som heter "numbers.txt.lock"
 	check(err)
 	defer f.Close()
 	nums := []byte(one + " " + two) //lag en []byte med parametrene
-	f.Write(nums)                   //skriver parametrene inn i "numbers.txt", bruker mellomrom for string.Split.
+	f.Write(nums)                   //skriver parametrene inn i "numbers.txt.lock", bruker mellomrom for string.Split.
 }
 
 func check(err error) { //så jeg slipper den gad damn if-setninga overalt
