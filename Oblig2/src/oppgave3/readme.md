@@ -22,9 +22,10 @@ Dette programmet leser "numbers.txt.lock", gjør innholdet til string (fra []byt
 Har så en if-setning som sjekker om det er to tall i filen, om det er det,, vil den kjøre funksjonen sumBytes og skrive summen inn i "numbers.txt.lock". Om det IKKE er 2 tall i filen, vil det bli printet noe setninger om hva som kan ha gått galt.<br>
 Mer detaljer om koden står i koden. 
 <h2>c) </h2>
-<h3>Error handling i a)</h3>
+<h4>Error handling i addup.go</h4>
 I addup.go er første errorhandling i strconv.Atoi(linje24). Her vil det komme en error-melding dersom en skriver noe annet en tall. Det vil da komme en "invalid syntax" melding. <br>
 Om en skriver noe annet en to tall som argument, vil det komme en "index out of range" melding, da koden prøver å lagre os.Args[1] og os.Args[2], som da ikke finnes. <br>
+<h4> error handling i sumfromfile.go og addtofile.go</h4>
 I denne filen laget jeg en egen funksjon for error-handlingen, så jeg slipper å skrive if-setningen hver gang jeg skriver noe med en error type.<br>
 sumfromfile.go inneholder de tidligere nevnte error typene, med samme errorhandling som i addtofile.go.
 I addtofile.go har ioutil.ReadFile en errortype. Denne erroren blir trigget om programmet ikke finner filen som blir spesifisert.<br>
