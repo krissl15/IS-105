@@ -1,43 +1,71 @@
 package main
 
 import (
-
-	"io/ioutil"
-	"log"
-	"strconv"
 	"os"
+	"log"
+	"io/ioutil"
+	"fmt"
+	"os/signal"
+	"syscall"
+	"strconv"
 	"strings"
-
-
-
+	"time"
 )
 
-func main()  {
-	content, err := ioutil.ReadFile("numbers.txt") // åpner for å bruke ioutil
-	file, err := os.OpenFile("numbers.txt", os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0666, )//åpner for å bruke os.Write.
+func main() {
+	sigz() //goroutine som tar opp SIGINT.
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	file, err := ioutil.ReadFile("numbers.txt.lock")
+	checke(err)
 
-	strSlice := string(content) //gjør teksten i filen "numbers" til string
+	strSlice := string(file)             //gjør teksten i filen "numbers" til string
 	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
-	nrOne := numbers[0]							//hadde jeg ikke splittet, men brukt []posisjonene, ville dette skapt
-	nrTwo := numbers[1]							//problem om tallene har flere siffer
+
+	if len(numbers) == 2 {
+
+		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
+		sum := sumBytes(file)
+		ioutil.WriteFile("numbers.txt.lock", sum, 0777)
+		fmt.Printf("%v %s", "'numbers.txt.lock' now updated to ", sum)
+
+	} else {
+		fmt.Println("ERROR")
+		fmt.Println("Did you already summmarize? Then use 'addtofile' to print sum!")
+		fmt.Println("Did you add two numbers to 'numbers.txt.lock'?")
+	}
+}
+
+func sumBytes(b []byte) []byte {
+	strSlice := string(b)                   //gjør teksten i filen "numbers" til string
+	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
+	nrOne := numbers[0]                     //hadde jeg ikke splittet, men brukt "[]"-plassene, ville dette skapt
+	nrTwo := numbers[1]                     //problem om tallene har flere siffer, da hvert siffer lagres.
 
 	intOne, err := strconv.Atoi(nrOne) //convert tallene til ints
 	intTwo, err := strconv.Atoi(nrTwo)
 
-   sum := intOne+intTwo //summer tallene
+	checke(err)
+
+	sum := intOne + intTwo //summer tallene
 	s := strconv.Itoa(sum) //gjør summen til string
-	b := []byte(s)//gjør stringen til []byte
+	bySum := []byte(s)     //gjør stringen til []byte
+	return bySum
+}
 
-	file.Write(b) //skriv inn []byten til filen
+func checke(err error) { //så jeg slipper den gad damn if-setninga overalt
+	if err != nil {
+		log.Println(err)
+		return
+	}
+}
 
-
-
-
-
-
+func sigz() { // gjør hele goroutinen til egen funksjon. Ryddigere.
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT)
+	go func() {
+		<-c
+		fmt.Printf("Motatt SIGINT signal før fullførelse")
+		os.Exit(1)
+	}()
 
 }
