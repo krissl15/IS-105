@@ -30,12 +30,12 @@ func filecount(s string) {
 	//lag et map som tar individuelle runer som key, antall ganger brukt som value
 	runeMap := make(map[rune]int) //Hallgeir hadde digga dette
 
-	for _, word := range runeCont {
-		_, ok := runeMap[word]
+	for _, rune := range runeCont {
+		_, ok := runeMap[rune]
 		if ok == true {
-			runeMap[word] += 1
+			runeMap[rune] += 1
 		} else {
-			runeMap[word] = 1
+			runeMap[rune] = 1
 		}
 	}
 	//aner ikke hvordan jeg sorterer maps, tror de er inconsise, mekker pairs og sorterer dem istedet.
@@ -43,7 +43,6 @@ func filecount(s string) {
 		Key   rune
 		Value int
 	}
-
 	var ss []kv
 	for k, v := range runeMap {
 		ss = append(ss, kv{k, v})
