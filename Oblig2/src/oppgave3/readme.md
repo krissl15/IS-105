@@ -1,5 +1,6 @@
 <h1>Oppgave3</h1>
 <h2>a)</h2>
+<h3>addup.go</h3>
 Jeg har valgt å bruke tre channels i denne oppgaven, dette kun for å litt grundigere ilustrere bruken av dem. 
 C1 og C2 lagrer hvert sitt tall fra cmd input, C3 lagrer summen når C1 og C2 har blitt summert. <br>
 Bruker plassene i os.Args ([]) for å lese inn tallene som blir skrivet i cmd. konverterer dem til ints.<br>
