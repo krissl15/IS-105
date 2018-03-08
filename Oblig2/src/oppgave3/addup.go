@@ -18,6 +18,7 @@ var c2 = make(chan int, 1) // c2 lagrer et annet tall
 var c3 = make(chan int, 1) //c3 lagrer summen
 
 func main() {
+	sigAdd() //goroutine som tar opp SIGINT-signal.
 	inputOne := os.Args[1]
 	inputTwo := os.Args[2]
 
@@ -26,8 +27,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	sigAdd() //goroutine som tar opp SIGINT-signal.
+	
 	funksjonA(intOne, intTwo) // funksjonB blir kallt i funksjonA, så ja, jeg bruker to funksjoner som oppgaven ber om.
 }
 
