@@ -18,18 +18,18 @@ var c3 = make(chan int, 1) //c3 lagrer summen
 
 func main() {
 
-	sigAdd() //goroutine som tar opp SIGINT-signal.
-	inputOne := os.Args[1]
-	inputTwo := os.Args[2]
+		sigAdd() //goroutine som tar opp SIGINT-signal.
+		inputOne := os.Args[1]
+		inputTwo := os.Args[2]
 
-	intOne, err := strconv.Atoi(inputOne) //konverterer cmd-argumentene til ints.
-	intTwo, err := strconv.Atoi(inputTwo)
-	if err != nil {
-		log.Fatal(err)
-	}
-	wg2.Add(1)                   //wg2 vil vente i funksjonA funksjonen til delta=0
-	go funksjonA(intOne, intTwo) // funksjonB blir kallt i funksjonA, så ja, jeg bruker to funksjoner som oppgaven ber om.
-	wg2.Wait()                   //wg2 venter på at den skal bli done, slik at ikke main-funksjonen avslutter før goroutinen er ferdig.
+		intOne, err := strconv.Atoi(inputOne) //konverterer cmd-argumentene til ints.
+		intTwo, err := strconv.Atoi(inputTwo)
+		if err != nil {
+			log.Fatal(err)
+		}
+		wg2.Add(1)                   //wg2 vil vente i funksjonA funksjonen til delta=0
+		go funksjonA(intOne, intTwo) // funksjonB blir kallt i funksjonA, så ja, jeg bruker to funksjoner som oppgaven ber om.
+		wg2.Wait()                   //wg2 venter på at den skal bli done, slik at ikke main-funksjonen avslutter før goroutinen er ferdig.
 
 }
 
