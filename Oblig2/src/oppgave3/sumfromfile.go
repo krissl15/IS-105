@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
 )
 
 func main() {
@@ -21,17 +22,13 @@ func main() {
 	strSlice := string(file)             //gjør teksten i filen "numbers" til string
 	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
 
-	if len(numbers) == 2 {
+	if len(numbers) == 2 { //dobbelsjekk
 
 		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
 		sum := sumBytes(file)
-		ioutil.WriteFile("numbers.txt.lock", sum, 0777)
-		fmt.Printf("%v %s", "'numbers.txt.lock' now updated to ", sum)
+		ioutil.WriteFile("numbers.txt.lock", sum, 0777) // skriv summen inn i tekstfilen
+		fmt.Printf("%s", sum)
 
-	} else {
-		fmt.Println("ERROR")
-		fmt.Println("Did you already summmarize? Then use 'addtofile' to print sum!")
-		fmt.Println("Did you add two numbers to 'numbers.txt.lock'?")
 	}
 }
 
