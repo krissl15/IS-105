@@ -38,7 +38,7 @@ func filecount(s string) {
 			runeMap[rune] = 1
 		}
 	}
-	//aner ikke hvordan jeg sorterer maps, tror de er inconsise, mekker et struct og sorterer det istedet.
+	//Maps er ikke addresserbare, så oppretter struct og sorterer dem istedet.
 	type kv struct {
 		Key   rune
 		Value int
