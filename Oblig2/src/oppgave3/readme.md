@@ -15,7 +15,7 @@ wg2.Add(1) gjør at der wg2.Wait() er kalt, vil funksjonen vente med å gå vide
 <h2>b)</h2>
 Slik jeg har tolket oppgaven skal addtofile lese to tall fra cmd og legge disse inn i en tekstfil. sumfromfile skal tallene fra samme tekstfilen, og skrive summen inn i tekstfilen. addtofile skal også printe ut summen etter den har blitt summert.
 <h5>Så dette er recap av løsningen min:</h5>
-addtofile må kjøres med to tall som parametre eks. addtofile 2 2. sumfromfile leser tallene, summerer dem, og skriver summen i tekstfilen. sumfromfile blir kjørt i addtofile ved hjelp av exec.LookPath() og exec.Command(). Dette gjør at en kun trenger å kjøre addtofile, og sumfromfile blir kjørt automatisk. 
+addtofile må kjøres med to tall som parametre eks. addtofile 2 2. sumfromfile leser tallene, summerer dem, og skriver summen i tekstfilen. addtofile vil lese tekstfilen når sumtofile er ferdig, og printe ut summen. sumfromfile blir kjørt i addtofile ved hjelp av exec.LookPath() og exec.Command(). Dette gjør at en kun trenger å kjøre addtofile, og sumfromfile blir kjørt automatisk. 
 <h3>addtofile.go</h3>
 For å sjekke at inputen i cmd er med to tall, bruker jeg en if-else med len(os.Args) som condition, dette sjekker lengden på slicen som blir opprettet når en bruker os.Args. <br>
 om len(os.Args)==3 vil en vil med navn "numbers.txt.lock" bli opprettet med tallene som innhold. Om filen allerede finnes vil den bli overridet til å inneholde de nye tallene. <br>
