@@ -9,8 +9,6 @@ import (
 	"syscall"
 	"strconv"
 	"strings"
-	"time"
-
 )
 
 func main() {
@@ -19,18 +17,10 @@ func main() {
 	file, err := ioutil.ReadFile("numbers.txt.lock")
 	checke(err)
 
-	strSlice := string(file)             //gjør teksten i filen "numbers" til string
-	numbers := strings.Split(strSlice, " ") //tallene i "numbers.txt" har mellomrom mellom seg.
-
-	if len(numbers) == 2 { //dobbelsjekk
-
-		time.Sleep(900 * time.Millisecond) //så en rekker ctrl+C...
 		sum := sumBytes(file)
 		ioutil.WriteFile("numbers.txt.lock", sum, 0777) // skriv summen inn i tekstfilen
 		fmt.Printf("%s", sum)
-
 	}
-}
 
 func sumBytes(b []byte) []byte {
 	strSlice := string(b)                   //gjør teksten i filen "numbers" til string
