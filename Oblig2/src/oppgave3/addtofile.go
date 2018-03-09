@@ -8,7 +8,6 @@ import (
 	"os/signal"
 	"syscall"
 	"os/exec"
-	//"time"
 )
 
 func main() {
@@ -17,20 +16,17 @@ func main() {
 
 	if len(os.Args) == 3 { //sjekker om det er 3 argument når programmet kjøres ([0]filnavn, [1]tall 1, [2]tall2)
 
-		//time.Sleep(900 * time.Millisecond)
 		nrOne := os.Args[1]      //os.args blir en slice, plass [1] blir første tallet som skrives (etter filnavn)
 		nrTwo := os.Args[2]      // [2] blir tall 2
 		createFile(nrOne, nrTwo) // kjør createfile med tallene skrevet i cmd som parametre
 
-		sumBro()
+		runSumFromFile()
 
 		file, err := ioutil.ReadFile("numbers.txt.lock")
 		check(err)
 		fmt.Println(string(file))
 
-	//	fmt.Println("created file: 'numbers.txt.lock' with numbers:", nrOne,"and", nrTwo)
-
-	}else{ // Programmet kjører kun om det er 0 tall eller 2 tall som parametre. alt annet er feil.
+	} else { // Programmet kjører kun om det er 0 tall eller 2 tall som parametre. alt annet er feil.
 		fmt.Println("Oops, you did something wrong, this code is perfect tho!")
 		fmt.Println("Make sure you write like this: addtofile number number")
 	}
@@ -45,7 +41,7 @@ func createFile(one, two string) {
 	f.Write(nums)                   //skriver parametrene inn i "numbers.txt", bruker mellomrom for string.Split.
 }
 
-func sumBro(){ //Kjør programmet sumfromfile.exe
+func runSumFromFile() { //Kjør programmet sumfromfile.exe
 	path, err := exec.LookPath("sumfromfile.exe")
 	check(err)
 	cmd := exec.Command(path)
@@ -69,9 +65,3 @@ func sig() { // gjør hele goroutinen til egen funksjon. Ryddigere.
 		os.Exit(1)
 	}()
 }
-
-
-
-
-
-
