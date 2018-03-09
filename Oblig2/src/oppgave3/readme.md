@@ -4,11 +4,12 @@ Nei, pcen er ikke treg. Jeg har lagt til time.Sleep() noen steder slik at det bl
 <h3>addup.go</h3>
 Jeg har valgt å bruke tre channels i denne oppgaven, dette kun for å litt grundigere ilustrere bruken av dem. 
 C1 og C2 lagrer hvert sitt tall fra cmd input, C3 lagrer summen når C1 og C2 har blitt summert. <br>
-Bruker plassene i os.Args ([]) for å lese inn tallene som blir skrivet i cmd. konverterer dem til ints.<br>
-funksjonA bruker tall fra stdin som argument, og dytter dem inn i hver sin channel. Her kalles og en .wait(wg) for å forsikre om at ikke programmet går videre før funksjonB har summert og dyttet summen i C3, hvor den så setter wg.done. Når tallet er summert i funksjonB, henter funksjonA ut tallet fra C3 og printer det ut. <br>
-Det er og en annen waitgroup i funksjonA (wg2) som venter på at tallet blir printet ut. <br>
+Bruker plassene i os.Args (som er en slice) for å lese inn tallene som blir skrivet i cmd. konverterer dem til ints.<br>
+FunksjonA kjøres som goroutine, der en waitgroup har blitt etablert. <br>
+wg2.Add(1) gjør at der wg2.Wait() er kalt, vil funksjonen vente med å gå videre til wg2Done() blir kalt. Dette er for å passe på at mainfunksjonen ikke vil stanse før funksjonA har printet ut summen. <br>
+"go funksjonB" blir kalt inni funksjonA, med samme waitgroup-system som forklart tidligere. funksjonA vil vente til funksjonB har summert tallet før den prøver å skrive ut noe. 
 <br>
-Verdt å nevne: funksjonA er bygd opp som en egen funksjon med goroutine i mainbodyen, men kjøres uten "go" fra mainfunksjonen. For å tydeligere illustrere goroutines kan en bare fjerne goroutinen i funksjonA, skrive "go funksjonA" i main, og legge til wg2.Add og wg2.Done før og etter... Blir helt samme resultat og bruk av goroutines uansett. 
+
 <br>
 <h2>b)</h2>
 Slik jeg har tolket oppgaven skal addtofile lese to tall fra cmd og legge disse inn i en tekstfil. sumfromfile skal tallene fra samme tekstfilen, og skrive summen inn i tekstfilen. addtofile skal også printe ut summen etter den har blitt summert.
