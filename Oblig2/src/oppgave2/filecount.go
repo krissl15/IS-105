@@ -25,10 +25,10 @@ func filecount(s string) {
 	buf := new(bytes.Buffer) //linjene under er dritkul kode som gjør txt til string.
 	buf.ReadFrom(file)
 	contents := buf.String()
-	runeCont := []rune(contents) //OG TIL RUNE WÆÆÆÆÆÆÆÆÆ
+	runeCont := []rune(contents) //OG TIL RUNE
 
 	//lag et map som tar individuelle runer som key, antall ganger brukt som value
-	runeMap := make(map[rune]int) //Hallgeir hadde digga dette
+	runeMap := make(map[rune]int)
 
 	for _, rune := range runeCont {
 		_, ok := runeMap[rune]
@@ -39,13 +39,13 @@ func filecount(s string) {
 		}
 	}
 	//Maps er ikke addresserbare, så oppretter struct og sorterer dem istedet.
-	type kv struct {
+	type ri struct {
 		Key   rune
 		Value int
 	}
-	var ss []kv
+	var ss []ri
 	for k, v := range runeMap {
-		ss = append(ss, kv{k, v})
+		ss = append(ss, ri{k, v})
 	}
 	sort.Slice(ss, func(i, j int) bool {
 		return ss[i].Value > ss[j].Value
