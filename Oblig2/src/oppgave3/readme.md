@@ -1,5 +1,5 @@
 <h1>Oppgave3</h1>
-Nei, pcen er ikke treg. Jeg har lagt til time.Sleep() noen steder slik at det blir lettere å teste SIGINT i d). 
+
 <h2>a)</h2>
 
 <h3>addup.go</h3>
